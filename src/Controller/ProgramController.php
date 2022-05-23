@@ -6,22 +6,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/program', name: 'program_index')]
+#[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
 {
-    #[Route('/', name: 'program')]
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->render('program/index.html.twig', [
-            'website' => 'Wild Series',
+            'program' => 'Program page',
         ]);
     }
 
-    #[Route('/', name: 'program_view')]
-    public function show(): Response
+    #[Route('/{id<\d+>}', name: 'view', methods: ['GET'])]
+    public function show($id): Response
     {
-        return $this->render('program/index.html.twig', [
-
+        return $this->render('program/show.html.twig', [
+            'id' => $id,
         ]);
     }
 }
