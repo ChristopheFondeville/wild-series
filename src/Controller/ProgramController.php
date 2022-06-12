@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -45,14 +46,27 @@ class ProgramController extends AbstractController
     #[Route('{programId}/season/{seasonId<\d+>}', name: 'season_show', methods: ['GET'])]
     #[Entity('program', options: ['id' => 'programId'])]
     #[Entity('season', options: ['id' => 'seasonId'])]
-    public function showEpisode(Program $program, Season $season): Response
+    public function showSeason(Program $program, Season $season): Response
     {
         $episodes = $season->getEpisodes();
 
         return $this->render('program/season_show.html.twig', [
             'program' => $program,
-            'seasons' => $season,
+            'season' => $season,
             'episodes' => $episodes,
+        ]);
+    }
+
+    #[Route('{programId}/season/{seasonId}/episode/{episodeId}', name: 'episode_show', methods: ['GET'])]
+    #[Entity('program', options: ['id' => 'programId'])]
+    #[Entity('season', options: ['id' => 'seasonId'])]
+    #[Entity('episode', options: ['id' => 'episodeId'])]
+    public function showEpisode(Program $program, Season $season, Episode $episode): Response
+    {
+        return $this->render('program/episode_show.html.twig', [
+            'program' => $program,
+            'season' => $season,
+            'episode' => $episode,
         ]);
     }
 

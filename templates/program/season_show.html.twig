@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episodes{% endblock %}
+{% block title %}Saisons{% endblock %}
 
 {% block body %}
     <h1>Toutes les épisodes : </h1>
     {% for episode in episodes %}
         <div>
-            <p>{{ loop.index }} / {{ episode.title }} </p>
+            {{ episode.title }}
+            <p><a href="{{ path("program_episode_show", { seasonId: season.id, programId: program.id, episodeId: episode.id }) }}"> Voir l'épisode </a></p>
         </div>
     {% else %}
         Aucun épisode trouvé.
