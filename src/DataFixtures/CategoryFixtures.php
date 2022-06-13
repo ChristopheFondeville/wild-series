@@ -8,9 +8,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
+    public const N_CATEGORY = 5;
+
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < ProgramFixtures::N_PROGRAMS; $i++) {
+        for ($i = 0; $i < self::N_CATEGORY; $i++) {
             $category = new Category();
             $category->setName('category-' . $i);
             $manager->persist($category);
