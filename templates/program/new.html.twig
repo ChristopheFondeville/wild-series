@@ -4,6 +4,7 @@
 
 {% block body %}
     <div>
+        <div>{{ form_errors(form) }}</div>
         <h2>Ajouter</h2>
         {{ form_start(form) }}
         {{ form_widget(form) }}
