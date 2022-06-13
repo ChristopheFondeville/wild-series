@@ -17,7 +17,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create();
 
         for($i = 0; $i < ProgramFixtures::N_PROGRAMS; $i++) {
-            for ($j = 0; $j < $this::N_SEASONS; $j++) {
+            for ($j = 0; $j < self::N_SEASONS; $j++) {
                 $season = new Season();
                 $season->setProgram($this->getReference('program-' . $i));
                 $season->setDescription($faker->realText);

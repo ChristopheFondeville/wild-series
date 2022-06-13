@@ -19,7 +19,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 
         for($i = 0; $i < ProgramFixtures::N_PROGRAMS; $i++) {
             for ($j = 0; $j < SeasonFixtures::N_SEASONS; $j++) {
-                for ($k = 0; $k < $this::N_EPISODES; $k++) {
+                for ($k = 0; $k < self::N_EPISODES; $k++) {
                     $episode = new Episode();
                     $episode->setTitle($faker->company);
                     $episode->setNumber($k+1);
@@ -33,7 +33,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             SeasonFixtures::class

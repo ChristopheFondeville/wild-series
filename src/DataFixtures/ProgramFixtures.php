@@ -16,12 +16,12 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < $this::N_PROGRAMS; $i++) {
+        for ($i = 0; $i < self::N_PROGRAMS; $i++) {
             $program = new Program();
             $program->setTitle($faker->company());
             $program->setSynopsis($faker->realText);
             $program->setPoster('https://resizing.flixster.com/MjVssEgJGXiAeZbseh8zQ7xrSPk=/206x305/v2/https://flxt.tmsimg.com/assets/p185013_b_v8_af.jpg');
-            $program->setCategory($this->getReference('category-' . mt_rand(0,9)));
+            $program->setCategory($this->getReference('category-' . mt_rand(0, CategoryFixtures::N_CATEGORY)));
             $manager->persist($program);
 
             $this->addReference('program-' . $i, $program);
