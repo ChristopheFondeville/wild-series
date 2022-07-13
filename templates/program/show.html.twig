@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wild Series{% endblock %}
+{% block title %}Série #{{ program.id }}{% endblock %}
 
 {% block body %}
-    <h1>Program ID: {{ id }} </h1>
+    <div class="media">
+        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <div class="media-body">
+            <p class="mt-0">{{ program.title }}</p>
+            <p>{{ program.synopsis }}</p>
+            <p>Catégorie : {{ program.category.name }}</p>
+        </div>
+        <div>
+            <ul>
+            {% for season in seasons %}
+                <li><a href="{{ path("program_season_show", { seasonId: season.id, programId: program.id }) }}"> Saison {{ season.number }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <a href="{{ path('program_index') }}">
+        Retour à la liste des programmes
+    </a>
 {% endblock %}
